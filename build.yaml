@@ -1,0 +1,14 @@
+targets:
+  $default:
+    sources:
+      - lib/**
+      - pubspec.yaml
+      - $package$
+    builders:
+      hive_generator:
+        generate_for:
+          - lib/domain/models/**.dart
+          - lib/data/local/hive/**.dart
+      drift_dev:
+        generate_for:
+          - lib/data/local/**.dart 

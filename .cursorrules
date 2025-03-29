@@ -1,0 +1,57 @@
+## Cursor IDE Proje Kuralları - Flutter OCR Paketi
+
+### 1. Proje Yapısı
+Paket, Flutter için yeniden kullanılabilir bir modül olarak tasarlanacaktır. Aşağıdaki klasör yapısına uygun oluşturulmalıdır:
+
+/
+├── assets/
+│   ├── images/          # Kullanıcı tarafından yüklenecek/önizleme resimleri
+│   └── icons/           # Uygulama ikonları ve UI ögeleri
+├── lib/
+│   ├── core/
+│   │   ├── constants/   # Genel sabitler, tema ve konfigürasyonlar
+│   │   ├── services/    # Ortak servisler (API çağrıları, hata yönetimi, loglama)
+│   │   └── utils/       # Yardımcı fonksiyonlar, extension'lar
+│   ├── data/
+│   │   ├── local/       # Hive, Drift gibi lokal veri kaynakları ve şemalar
+│   │   └── remote/      # DeepSeek API entegrasyonu ve diğer uzaktan veri kaynakları
+│   ├── domain/
+│   │   ├── models/      # Veri modelleri (OCR sonucu, hata modelleri vb.)
+│   │   └── repositories/ # Veri erişim arayüzleri (OCR ve AI düzeltme için)
+│   └── presentation/
+│       ├── controllers/ # GetX controller'ları (durum yönetimi ve bağımlılık enjeksiyonu)
+│       ├── screens/     # Uygulama akışını yansıtan ekranlar (Görsel yükleme, OCR sonuç, AI düzeltme, sonuç)
+│       └── widgets/     # Yeniden kullanılabilir widget'lar, UI bileşenleri
+├── test/                # Unit, widget ve entegrasyon testleri
+├── pubspec.yaml         # Paket bağımlılıkları
+├── analysis_options.yaml # Kod analizi ve linter ayarları (very_good_analysis)
+├── prd.md               # Ürün Gereksinimleri Dokümanı (paket özellikleri, akış ve teknik detaylar)
+└── README.md            # Paket açıklaması, kurulum ve kullanım kılavuzu
+
+### 2. Mimari ve Kod Standartları
+- **Clean Architecture:** Katmanlar (Presentation, Domain, Data) arasında net ayrım yapılacak.
+- **GetX Kullanımı:** Durum yönetimi, bağımlılık enjeksiyonu ve yönlendirme GetX ile sağlanacaktır.
+- **Kod Standartları:** Kod, okunabilir, modüler ve yeniden kullanılabilir olmalıdır; SOLID prensipleri uygulanacaktır.
+- **Linter:** very_good_analysis kullanılarak kod kalitesi sürekli kontrol edilecek.
+
+### 3. Responsive Tasarım
+- **ScreenUtil:** UI elemanlarının farklı ekran boyutlarına uyum sağlaması için kullanılacak.
+- **Tasarım:** Mobil cihazlarda tutarlı ve kullanıcı dostu bir deneyim sağlanacak.
+
+### 4. Lokal ve Remote Veri Yönetimi
+- **Local DB:** Hive ve/veya Drift kullanılacak; veritabanı şemaları, migration’lar ve veri modelleri detaylıca dokümante edilecektir.
+- **Remote API:** DeepSeek API entegrasyonu, ücretsiz kullanım kotası ve düşük maliyetli çözümler göz önünde bulundurularak yapılandırılacaktır.
+
+### 5. Geliştirme Araçları
+- **build_runner:** Kod üretimi ve güncelleme süreçlerinde kullanılacak.
+- **Kod Üretim Paketleri:** hive_generator, drift_dev gibi araçlarla otomatik kod üretimi sağlanacaktır.
+
+### 6. Hata Yönetimi ve Loglama
+- Tüm hata durumları try-catch bloklarıyla yönetilecek.
+- Uygun loglama stratejisi uygulanacak; prod ortamında gereksiz loglar temizlenecek.
+
+### 7. Geliştirme Süreci Kuralları
+- PRD.md'deki adımlardan her bir sonrakine geçtiğimizde bildirim yapılacak ve kullanıcı onayı alınacak.
+- Her adımda PRD dışında ek bir şey eklenip eklenmediği kontrol edilecek ve bildirilecek.
+- Her adımın linter hatalarını düzeltmeden sonraki adıma geçilmeyecek.
+
