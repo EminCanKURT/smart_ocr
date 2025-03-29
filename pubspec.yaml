@@ -1,7 +1,7 @@
 name: smart_ocr
 description: "Flutter paketi olarak geliştirilmiş, OCR ve AI düzeltme özelliklerine sahip akıllı metin tanıma modülü."
 version: 0.0.2
-homepage: https://github.com/yourusername/smart_ocr
+homepage: https://github.com/EminCanKURT/smart_ocr
 
 environment:
   sdk: ^3.6.1
